@@ -1,0 +1,202 @@
+/* general styles */
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+.navbar {
+	background-color: rgba(0, 0, 0, 0.5);
+	background-image: none;
+	border-bottom: 1px solid #232323;
+	box-shadow: none;
+	border-radius: 0px;
+	transition: background-color 0.5s ease-in 0s;
+	font-weight: bold;	
+}
+
+.collapse > .nav > li > a{
+	color: #FFFFFF;
+}
+
+.collapse > .nav > li > a:hover {
+	color: #FF8533;
+}
+
+/* padded section */
+.pad-section {
+	padding: 50px 0;
+}
+.pad-section img {
+	width: 100%;
+}
+
+/* vertical-centered text */
+.text-vcenter {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFFFFF;
+}
+.text-vcenter h1 {
+	font-size: 4.5em;
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+}
+
+/* additional sections */
+#home {
+	background: url(../img/bcg_slide-1.jpg) no-repeat center center fixed; 
+	display: table;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#about {
+}
+
+#services {
+	background-color: #306d9f;
+	color: #ffffff;
+}
+#services .fa {
+	border: 2px solid #FFFFFF;
+	border-radius: 50%;
+	display: inline-block;
+	font-size: 60px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	vertical-align: middle;
+	width: 100px;
+}
+
+#portfolio {
+	background: url(../img/bcg_slide-2.jpg) no-repeat center center fixed; 
+	display: table;
+	height: 800px;
+	position: relative;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#portfolio .text-center {
+	color: #ffffff;
+}
+#portfolio .panel {
+	opacity: 0.85;
+}
+
+#contact{
+	background-color: #306d9f;
+	color: #ffffff;
+}
+
+#google_map {
+	height: 400px;
+	width: 100%;
+}
+
+footer {
+	padding: 20px 0;
+}
+
+.copywrite {
+	float: left;
+}
+
+.social {
+	float: right;
+}
+
+/* login form */
+nav #login-content {
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 2px;
+	z-index: 999;    
+	background: #fff;
+	background-image: linear-gradient(top, #fff, #eee);  
+	padding: 15px;
+	box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
+	border-radius: 3px 0 3px 3px;
+}
+
+nav li #login-content {
+	right: 2px;
+	width: 250px;  
+}
+
+#inputs input {
+	background: #f1f1f1;
+	padding: 6px 5px;
+	margin: 0 0 5px 0;
+	width: 223px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px #ccc inset;
+}
+
+#inputs input:focus {
+	background-color: #fff;
+	border-color: #e8c291;
+	outline: none;
+	box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+#login #actions {
+	margin: 10px 0 0 0;
+}
+
+#login #submit {    
+	background-color: #d14545;
+	background-image: linear-gradient(top, #e97171, #d14545);
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;    
+	border: 1px solid #7e1515;
+	float: left;
+	height: 30px;
+	padding: 0;
+	width: 100px;
+	cursor: pointer;
+	font: bold 14px Arial, Helvetica;
+	color: #fff;
+}
+
+#login #submit:hover,
+#login #submit:focus {    
+	background-color: #e97171;
+	background-image: linear-gradient(top, #d14545, #e97171);
+} 
+
+#login #submit:active {   
+	outline: none;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;   
+}
+
+#login #submit::-moz-focus-inner {
+	border: none;
+}
+
+#login label {
+	float: right;
+	line-height: 30px;
+	font: bold 10px Arial, Helvetica;
+}
+
+#login label input {
+	position: relative;
+	top: 2px;
+	right: 2px;
+}
