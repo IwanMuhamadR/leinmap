@@ -5,9 +5,9 @@
 		<div class="copywrite">Copyright &copy; Leinmap IT Solution 2015</div>
 		<div class="social">
 			<ul class="list-inline">
-				<li><a href="#"><i class="fa fa-facebook-square fa-lg"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter-square fa-lg"></i></a></li>
-				<li><a href="#"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+				<li><a href="#"><img src="<?php echo base_url(); ?>assets/img/facebook.png" /></a></li>
+				<li><a href="#"><img src="<?php echo base_url(); ?>assets/img/google-plus.png" /></a></li>
+				<li><a href="#"><img src="<?php echo base_url(); ?>assets/img/twitter.png" /></a></li>
 			</ul>			
 		</div>
 	  </div>

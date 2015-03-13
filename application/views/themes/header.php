@@ -25,7 +25,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="<?php echo base_url(); ?>">Leinmap</a>
+		  <a class="navbar-brand" href="<?php echo base_url(); ?>">LEINMAP</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse-main">
@@ -58,7 +58,7 @@
 	<!-- first section - Home -->
 	<div id="home" class="home">
 	  <div class="text-vcenter">
-		<h1>Leinmap</h1>
+		<h1>LEINMAP</h1>
 		<h3>Lead-Innovation-Mobile-Application</h3>
 		<a href="#about" class="btn btn-default btn-lg page-scroll">Continue</a>
 	  </div>
