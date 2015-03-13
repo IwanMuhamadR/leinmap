@@ -10,6 +10,7 @@
   <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
+    <link rel="SHORTCUT ICON" href="<?php echo base_url(); ?>assets/img/fav.png">
 </head>
 <body>
   <!--  BODY PAGE CONTENT -->
