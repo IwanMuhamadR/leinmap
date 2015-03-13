@@ -91,12 +91,12 @@
 		<h2 class="text-center">Get in touch</h2> <hr />
 		<div class="row">
 		  <div class="col-sm-6">
-			<!-- <div id="google_map"></div> -->
+			<div id="google_map"></div>
 		  </div>
 		  <div class="col-sm-6">
 			<h4>Feel free to send a message</h4>
 			<?php echo form_open('contact'); ?>
-			<form role="form" method="post" action="#">
+              <form role="form" method="post" action="#">
 				<div class="contact_form">
 					<input name="name" type="text" class="form-control" id="name" placeholder="Your Name" maxlength="40">
 				</div>
