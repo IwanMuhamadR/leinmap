@@ -91,7 +91,7 @@
 		<h2 class="text-center">Get in touch</h2> <hr />
 		<div class="row">
 		  <div class="col-sm-6">
-			<div id="google_map"></div>
+			 <div id="google_map"></div>
 		  </div>
 		  <div class="col-sm-6">
 			<h4>Feel free to send a message</h4>
