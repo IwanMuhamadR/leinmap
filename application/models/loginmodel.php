@@ -8,7 +8,7 @@ class Loginmodel extends CI_Model
 		$this->db->from('users');		
 		$arr = array(
 				'username' => $username,
-				'password' => $password
+				'password' => md5($password)
 			);
 		$this->db->where($arr);
 		$result = $this->db->get();
