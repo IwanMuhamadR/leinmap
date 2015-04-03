@@ -40,13 +40,23 @@ class Login_model extends CI_Model
                     ->where('password',$password)
                     ->limit(1)
                     ->get();
-
+		$query2 = $this->db->select('name')
+                    ->from('users')
+                    ->where('username',$username)
+                    ->where('password',$password)
+                    ->limit(1)
+                    ->get();
+		
         if($query->num_rows() == 1){
-            $data = array(
-                'isLogin' => true,
-                'username' => $username,
-            );
-            $this->session->set_userdata($data);
+			foreach($query2->result() as $row)
+			{
+				$data = array(
+					'isLogin' => true,
+					'name' =>  $row->name,
+					'username' => $username					
+				);
+				$this->session->set_userdata($data);
+			}
             return true;
         }
         else{
@@ -58,7 +68,8 @@ class Login_model extends CI_Model
     {
         $data = array(
             'isLogin' => false,
-            'username' => ''
+			'name' => '',
+            'username' => ''			
         );
         $this->session->unset_userdata($data);
         $this->session->sess_destroy();

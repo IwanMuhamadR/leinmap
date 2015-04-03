@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2015 at 02:54 AM
+-- Generation Time: Apr 04, 2015 at 01:00 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.16
 
@@ -35,7 +35,15 @@ CREATE TABLE IF NOT EXISTS `detail_project` (
   PRIMARY KEY (`detailprojectid`),
   KEY `fk_projectid` (`projectid`),
   KEY `fk_users` (`usersid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `detail_project`
+--
+
+INSERT INTO `detail_project` (`detailprojectid`, `projectid`, `usersid`) VALUES
+(1, 20, 13),
+(6, 18, 12);
 
 -- --------------------------------------------------------
 
@@ -95,17 +103,18 @@ CREATE TABLE IF NOT EXISTS `project` (
   `period` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `po` varchar(100) NOT NULL,
-  `isdone` int(11) NOT NULL,
+  `isdone` varchar(12) NOT NULL,
   PRIMARY KEY (`projectid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`projectid`, `name`, `datebegin`, `dateend`, `period`, `price`, `po`, `isdone`) VALUES
-(1, 'Tboot', '2015-04-03', '2015-04-17', 14, 2000000, 'asd', 12),
-(2, 'indosat vote hunter', '2015-04-02', '2015-04-09', 7, 10000000, 'qwerty', 11);
+(18, 'bdv', '2015-04-01', '2015-04-11', 10, 2000000, 'iwan', 'Done'),
+(19, 'Tboot', '2015-04-03', '2015-04-17', 14, 5000000, 'iwan', 'On Progress'),
+(20, 'vote hunter', '2015-04-04', '2015-04-18', 14, 10000000, 'Budi', 'On Progress');
 
 -- --------------------------------------------------------
 
@@ -147,15 +156,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   `usergroupid` int(11) NOT NULL,
   PRIMARY KEY (`usersid`),
   KEY `fk_usergroup` (`usergroupid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`usersid`, `username`, `password`, `name`, `address`, `email`, `phone`, `status`, `usergroupid`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'available', 1),
-(3, 'ujang', 'ujang', 'ujang gardu', 'Lembang', 'ujang@yahoo.com', '123456789', 'henteu available', 1);
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'Available', 1),
+(3, 'ujang', 'ujang', 'ujang gardu', 'Lembang', 'ujang@yahoo.com', '123456789', 'Not Available', 1),
+(12, 'hibishi', 'iwan', 'asep', 'iwan', 'iwaniwan', '12307', 'Available', 2),
+(13, 'thesayder', 'e10adc3949ba59abbe56e057f20f883e', 'Budi', 'Cianjur', 'budicianjur@yahoo.com', '02291280625', 'Available', 2);
 
 --
 -- Constraints for dumped tables

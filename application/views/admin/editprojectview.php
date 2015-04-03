@@ -35,25 +35,29 @@
 					<label>Begin Date</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="datebegin" value="<?php echo $row->datebegin; ?>"><br />
+					<div class='input-group date'>
+						<input type='text' class="form-control" name="datebegin" id="datepicker" value="<?php echo $row->datebegin; ?>"/>
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 				</div>
-			</div>
+			</div>			
+			<br />
 			<div class="row">
 				<div class="col-lg-2">
 					<label>End Date</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="dateend" value="<?php echo $row->dateend; ?>"><br />
+					<div class='input-group date'>
+						<input type='text' class="form-control" name="dateend" id="datepicker2" value="<?php echo $row->dateend; ?>"/>
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Periode</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="period" value="<?php echo $row->period; ?>"><br />
-				</div>
-			</div>
+			<br />
 			<div class="row">
 				<div class="col-lg-2">
 					<label>Price</label>
@@ -62,20 +66,21 @@
 					<input type="text" class="form-control" name="price" value="<?php echo $row->price; ?>"><br />
 				</div>
 			</div>
+			<input type="hidden" class="form-control" name="po" value="<?php echo $this->session->userdata('name');?>">
 			<div class="row">
 				<div class="col-lg-2">
-					<label>PO</label>
+					<label>Is Done</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="po" value="<?php echo $row->po; ?>"><br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>isdone</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="isdone" value="<?php echo $row->isdone; ?>"><br />
+					<div class="form-group">
+						<select class="form-control" name="isdone" >
+							<option value="<?php echo $row->isdone ;?>"><?php echo $row->isdone ;?></option>
+							<option disabled="disabled">Select</option>
+							<option value="On Progress">On Progress</option>
+							<option value="Done">Done</option>
+						</select>
+					</div>
+					<br />
 				</div>
 			</div>			
 			<div class="row">

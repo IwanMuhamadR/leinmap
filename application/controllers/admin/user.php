@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Team extends MY_Controller{
+class User extends MY_Controller{
 
 
     private $data = array(
@@ -17,20 +17,20 @@ class Team extends MY_Controller{
 	
 	public function index()
 	{
-		$this->load->model('admin/teammodel');
-		$resultdata['results'] = $this->teammodel->getUser();
-        $this->load->view('admin/teamview', $resultdata);	
+		$this->load->model('admin/usermodel');
+		$resultdata['results'] = $this->usermodel->getUser();
+        $this->load->view('admin/userview', $resultdata);	
     }
 	
 	public function addview()
 	{
-		$this->load->view('admin/addteamview');
+		$this->load->view('admin/adduserview');
 	}
 	
 	public function add()
 	{
 		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$password = md5($_POST['password']);
 		$name = $_POST['name'];
 		$address = $_POST['address'];
 		$phone = $_POST['phone'];
@@ -47,22 +47,22 @@ class Team extends MY_Controller{
 			'status' => $status,
 			'usergroupid' => $usergroupid
 		);
-		$this->load->model('admin/teammodel');
-		$this->teammodel->addUser($arr);
-		redirect('admin/team');		
+		$this->load->model('admin/usermodel');
+		$this->usermodel->addUser($arr);
+		redirect('admin/user');		
 	}
 	
 	public function updateview()
 	{
 		$id=$_GET['uid'];
-		$this->load->model('admin/teammodel');
-		$resultdata['find'] = $this->teammodel->getUserById($id);
+		$this->load->model('admin/usermodel');
+		$resultdata['find'] = $this->usermodel->getUserById($id);
 		$resultdata['id'] = $id;
 		if(!empty($resultdata['find']))
 		{
-			$this->load->view('admin/editteamview', $resultdata);
+			$this->load->view('admin/edituserview', $resultdata);
 		}else{
-			redirect('admin/team');
+			redirect('admin/user');
 		}
 	}
 	
@@ -81,24 +81,24 @@ class Team extends MY_Controller{
 			'email' => $email,
 			'status' => $status
 		);
-		$this->load->model('admin/teammodel');
-		if($this->teammodel->updateUser($id, $arr)==TRUE)
+		$this->load->model('admin/usermodel');
+		if($this->usermodel->updateUser($id, $arr)==TRUE)
 		{
-			redirect('admin/team');
+			redirect('admin/user');
 		}else{
-			redirect('admin/team');
+			redirect('admin/user');
 		}
 	}
 	
 	public function delete()
 	{
 		$id=$_GET['uid'];
-		$this->load->model('admin/teammodel');
-		if($this->teammodel->deleteUser($id)==TRUE)
+		$this->load->model('admin/usermodel');
+		if($this->usermodel->deleteUser($id)==TRUE)
 		{
-			redirect('admin/team');
+			redirect('admin/user');
 		}else{
-			redirect('admin/team');
+			redirect('admin/user');
 		}
 	}
 }

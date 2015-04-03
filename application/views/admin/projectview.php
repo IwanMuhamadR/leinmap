@@ -32,7 +32,7 @@
         			<th>Periode</th>
         			<th>Price</th>
 					<th>PO</th>
-					<th>isdone</th>
+					<th>Is Done</th>
         		</tr>
         	</thead>
         	<tbody>
@@ -50,6 +50,7 @@
 					<td><?php echo $row->po; ?></td>
         			<td><?php echo $row->isdone; ?></td>
         			<td>
+						<a onclick="window.location='<?=base_url();?>admin/project/addteamview?pid=<?=$row->projectid;?>'" href="javascript:void(0)" class="btn btn-info"><i class="fa fa-list"></i></a>
                         <a onclick="window.location='<?=base_url();?>admin/project/updateview?pid=<?=$row->projectid;?>'" href="javascript:void(0)" class="btn btn-warning"><i class="fa fa-edit"></i></a>
                         <a onclick="window.location='<?=base_url();?>admin/project/delete?pid=<?=$row->projectid;?>'" href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
         			</td>

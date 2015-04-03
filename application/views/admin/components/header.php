@@ -13,8 +13,10 @@
     <link href="<?php echo base_url(); ?>assets/css/timeline.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/morris.css" rel="stylesheet" />
-    <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">	
+	<link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" >
     <link rel="SHORTCUT ICON" href="<?php echo base_url(); ?>assets/img/fav.png" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -84,7 +86,7 @@
                         <a <?php echo $breadcrumb=="finance"?'class="active"':"";?> href="<?php echo site_url("admin/finance");?>"><i class="fa fa-money fa-fw"></i> Finance</a>
                     </li>
 					<li>
-                        <a <?php echo $breadcrumb=="finance"?'class="active"':"";?> href="<?php echo site_url("admin/team");?>"><i class="fa fa-users fa-fw"></i> Team</a>
+                        <a <?php echo $breadcrumb=="finance"?'class="active"':"";?> href="<?php echo site_url("admin/user");?>"><i class="fa fa-users fa-fw"></i> Users</a>
                     </li>
 
                 </ul>

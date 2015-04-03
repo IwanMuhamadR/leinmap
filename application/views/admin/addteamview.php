@@ -2,7 +2,7 @@
 <div id="page-wrapper" style="margin-top: 50px">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Team</h1>
+        <h1 class="page-header">Project</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -11,95 +11,124 @@
 <div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-tasks fa-fw"></i> Add User
+        <i class="fa fa-tasks fa-fw"></i> Add Team
     </div>
 	
-	<?php
-		echo form_open('admin/team/add');
-	?>
     <!-- /.panel-heading -->
     <div class="panel-body">
-        <div class="form-group">
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Username</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="username"><br />
-				</div>
+        <table class="table table-striped table-hover">
+        	<thead>
+        		<tr>
+        			<th>ID</th>
+        			<th>Project Name</th>
+        			<th>Begin Date</th>
+        			<th>End Date</th>
+        			<th>Periode</th>
+        			<th>Price</th>
+					<th>PO</th>
+					<th>Is Done</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+				<?php
+					foreach($find as $row)
+					{
+				?>
+        		<tr>
+        			<td><?php echo $row->projectid; ?></td>
+        			<td><?php echo $row->name; ?></td>
+        			<td><?php echo $row->datebegin; ?></td>
+        			<td><?php echo $row->dateend; ?></td>
+        			<td><?php echo $row->period; ?></td>
+					<td><?php echo $row->price; ?></td>
+					<td><?php echo $row->po; ?></td>
+        			<td><?php echo $row->isdone; ?></td>
+        		</tr>
+				<?php
+					}
+				?>
+        	</tbody>
+        </table>
+		<br />
+		<table class="table table-striped table-hover"">
+        	<thead>
+        		<tr>
+        			<th>Team on this Project</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+				<?php
+					foreach($detail as $det)
+					{
+				?>
+        		<tr>
+        			<td style="width:25%;"><?php echo $det->name; ?></td>
+					<td style="width:20%;">Change with</td>
+					<td>						
+						<div class="form-group">
+							<select class="form-control" name="team" >
+								<?php
+									foreach($users as $row)
+									{								
+								?>
+									<option onclick="window.location='<?=base_url();?>admin/project/updateteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>&uid=<?=$row->usersid;?>'"><?php echo $row->name ;?></option>
+								<?php 
+									}
+								?>
+							</select>
+						</div>						
+					</td>
+					<td>
+                        <a onclick="window.location='<?=base_url();?>admin/project/deleteteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>'" href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+        			</td>
+        		</tr>
+				<?php
+					}
+				?>
+        	</tbody>
+        </table>
+		<br />
+		
+		<?php
+			echo form_open('admin/project/addteam');
+			foreach($find as $row)
+			{
+		?>
+		<input type="hidden" class="form-control" name="projectid" value="<?php echo $row->projectid; ?>">
+		<?php
+			}
+		?>
+		<div class="row">
+			<div class="col-lg-2">
+				<label>Select Team</label>
 			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Password</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="password" class="form-control" name="password"><br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Name</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="name"><br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Address</label>
-				</div>
-				<div class="col-lg-4">
-					<textarea type="text" class="form-control" rows="3" name="address"></textarea><br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Phone</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="phone"><br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-					<label>Email</label>
-				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="email"><br />
-				</div>
-			</div>
-			<input type="hidden" class="form-control" name="status" value="Available"><br />
-			<div class="row">
-				<div class="col-lg-2">
-					<label>User Group</label>
-				</div>
-				<div class="col-lg-4">
-					<div class="form-group">
-						<select class="form-control" name="usergroupid">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
-						</select>
-					</div>
-					<br />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-2">
-				</div>
-				<div class="col-lg-4">
-					<button type="submit" class="btn btn-success">Save</button>
-					<button type="reset" class="btn btn-warning">Reset</button>
+			<div class="col-lg-4">
+				<div class="form-group">
+					<select class="form-control" name="team" >
+						<?php
+							foreach($users as $row)
+							{								
+						?>
+							<option value="<?php echo $row->usersid ;?>"><?php echo $row->name ;?></option>
+						<?php 
+							}
+						?>
+					</select>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-lg-2">
+			</div>
+			<div class="col-lg-4">
+				<button type="submit" class="btn btn-success">Add</button>
+			</div>
+		</div>
+		<?php
+			echo form_close();
+		?>
     </div>
     <!-- /.panel-body -->
-	<?php 
-		echo form_close();
-	?>
 </div>
 <!-- /.panel -->
 </div>
