@@ -13,7 +13,7 @@ class Login extends CI_Controller {
         parent :: __construct();
         $this->load->helper('form');
 //        $this->load->library('form_validation');
-        $this->load->model('admin/Login_model','login',TRUE);
+        $this->load->model('admin/login_model','login',TRUE);
     }
 
     public function index()

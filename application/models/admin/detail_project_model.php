@@ -1,11 +1,19 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Projectmodel extends CI_Model
+class Detail_project_model extends CI_Model
 {	
-	function getProject()
+	private $tblUsers = 'users';
+	private $tblDetail = 'detail_project';
+
+	function getTeamByProjectId($id)
 	{
-		$arr = $this->db->get('project');		
-		return $arr->result();
+		$arr = $this->db->select('*')
+						->from('project p')
+						->where('p.projectid',$id)
+						->join('detail_project d','p.projectid=d.projectid')		
+						->join('users u','d.usersid=u.usersid')
+						->get()->result();
+		return $arr;
 	}
 	
 	function getProjectById($id)

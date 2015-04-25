@@ -2,7 +2,7 @@
 
 class Projectmodel extends CI_Model
 {	
-	function getProject()
+	function getLog()
 	{
 		$arr = $this->db->get('project');		
 		return $arr->result();

@@ -34,29 +34,38 @@ class Login_model extends CI_Model
     public function userCheck(){
         $username = $this->input->post('username');
         $password = md5($this->input->post('password'));
-        $query = $this->db->select('username','password','name')
+        $query = $this->db->select('*')
                     ->from('users')
                     ->where('username',$username)
                     ->where('password',$password)
                     ->limit(1)
                     ->get();
-		$query2 = $this->db->select('name')
-                    ->from('users')
-                    ->where('username',$username)
-                    ->where('password',$password)
-                    ->limit(1)
-                    ->get();
-		
+		// $query2 = $this->db->select('name')
+                    // ->from('users')
+                    // ->where('username',$username)
+                    // ->where('password',$password)
+                    // ->limit(1)
+                    // ->get();
+		// print_r($query->result());die;
         if($query->num_rows() == 1){
-			foreach($query2->result() as $row)
-			{
-				$data = array(
+			// foreach($query2->result() as $row)
+			// {
+				// $data = array(
+					// 'isLogin' => true,
+					// 'name' =>  $row->name,
+					// 'usergroup' =>  $row->usergroupid,
+					// 'username' => $username					
+				// );
+				// $this->session->set_userdata($data);
+			// }
+			$data = array(
 					'isLogin' => true,
-					'name' =>  $row->name,
+					'usersid' =>  $query->row()->usersid,
+					'name' =>  $query->row()->name,
+					'usergroup' =>  $query->row()->usergroupid,
 					'username' => $username					
 				);
-				$this->session->set_userdata($data);
-			}
+			$this->session->set_userdata($data);
             return true;
         }
         else{

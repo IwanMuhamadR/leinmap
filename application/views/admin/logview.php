@@ -2,7 +2,7 @@
 <div id="page-wrapper" style="margin-top: 50px">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Project</h1>
+        <h1 class="page-header">Log</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -18,7 +18,7 @@
 <div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-tasks fa-fw"></i> Project List
+        <i class="fa fa-tasks fa-fw"></i> Log List
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -26,15 +26,10 @@
         	<thead>
         		<tr>
         			<th>No</th>
-        			<th>Project Name</th>
-        			<th>Begin Date</th>
-        			<th>End Date</th>
-        			<th>Periode</th>
-        			<th>Price</th>
-					<th>PO</th>
-					<th>Client</th>
-					<th>Status</th>
-					<th>Action</th>
+        			<th>Date</th>
+        			<th>User</th>
+        			<th>Ipaddress</th>
+        			<th>Log</th>
         		</tr>
         	</thead>
         	<tbody>

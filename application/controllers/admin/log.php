@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Project extends MY_Controller{
+class Logmodel extends MY_Controller{
 
 
     private $data = array(
         'title' => "Leinmap IT Solution",
-        'breadcrumb' => "project",
+        'breadcrumb' => "log",
         );
 	
 	public function __construct(){

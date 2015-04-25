@@ -5,7 +5,7 @@ class User extends MY_Controller{
 
     private $data = array(
         'title' => "Leinmap IT Solution",
-        'breadcrumb' => "team",
+        'breadcrumb' => "user",
         );
 
 	public function __construct()

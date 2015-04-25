@@ -19,34 +19,25 @@
         <table class="table table-striped table-hover">
         	<thead>
         		<tr>
-        			<th>ID</th>
         			<th>Project Name</th>
         			<th>Begin Date</th>
         			<th>End Date</th>
         			<th>Periode</th>
         			<th>Price</th>
 					<th>PO</th>
-					<th>Is Done</th>
+					<th>Status</th>
         		</tr>
         	</thead>
         	<tbody>
-				<?php
-					foreach($find as $row)
-					{
-				?>
         		<tr>
-        			<td><?php echo $row->projectid; ?></td>
-        			<td><?php echo $row->name; ?></td>
-        			<td><?php echo $row->datebegin; ?></td>
-        			<td><?php echo $row->dateend; ?></td>
-        			<td><?php echo $row->period; ?></td>
-					<td><?php echo $row->price; ?></td>
-					<td><?php echo $row->po; ?></td>
-        			<td><?php echo $row->isdone; ?></td>
+        			<td><?php echo $find->name; ?></td>
+        			<td><?php echo $find->datebegin; ?></td>
+        			<td><?php echo $find->dateend; ?></td>
+        			<td><?php echo $find->period; ?> hari</td>
+					<td><?php echo "Rp. ".number_format($find->price,0,'.',','); ?></td>
+					<td><?php echo $find->po; ?></td>
+        			<td><div class="label label-<?php echo $find->isdone=="Done"?"success":"warning"?>"><?php echo $find->isdone; ?></div></td>
         		</tr>
-				<?php
-					}
-				?>
         	</tbody>
         </table>
 		<br />
@@ -63,24 +54,26 @@
 				?>
         		<tr>
         			<td style="width:25%;"><?php echo $det->name; ?></td>
-					<td style="width:20%;">Change with</td>
-					<td>						
-						<div class="form-group">
-							<select class="form-control" name="team" >
-								<?php
-									foreach($users as $row)
-									{								
-								?>
-									<option onclick="window.location='<?=base_url();?>admin/project/updateteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>&uid=<?=$row->usersid;?>'"><?php echo $row->name ;?></option>
-								<?php 
-									}
-								?>
-							</select>
-						</div>						
-					</td>
-					<td>
-                        <a onclick="window.location='<?=base_url();?>admin/project/deleteteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>'" href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-        			</td>
+					<?php if($find->isdone != "Done"):?>
+						<td style="width:20%;">Change with</td>
+						<td>						
+							<div class="form-group">
+								<select class="form-control" name="team" >
+									<?php
+										foreach($users as $row)
+										{								
+									?>
+										<option onclick="window.location='<?=base_url();?>admin/project/updateteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>&uid=<?=$row->usersid;?>'"><?php echo $row->name ;?></option>
+									<?php 
+										}
+									?>
+								</select>
+							</div>						
+						</td>
+						<td>
+							<a onclick="window.location='<?=base_url();?>admin/project/deleteteam?dpid=<?=$det->detailprojectid;?>&pid=<?=$det->projectid;?>'" href="javascript:void(0)" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+						</td>
+					<?php endif;?>
         		</tr>
 				<?php
 					}
@@ -91,13 +84,9 @@
 		
 		<?php
 			echo form_open('admin/project/addteam');
-			foreach($find as $row)
-			{
 		?>
-		<input type="hidden" class="form-control" name="projectid" value="<?php echo $row->projectid; ?>">
-		<?php
-			}
-		?>
+		<input type="hidden" class="form-control" name="projectid" value="<?php echo $find->projectid; ?>">
+		<?php if($find->isdone != "Done"):?>
 		<div class="row">
 			<div class="col-lg-2">
 				<label>Select Team</label>
@@ -116,17 +105,19 @@
 					</select>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2">
-			</div>
 			<div class="col-lg-4">
-				<button type="submit" class="btn btn-success">Add</button>
+				<button type="submit" class="btn btn-info">Add</button>
 			</div>
 		</div>
 		<?php
+		endif;
 			echo form_close();
 		?>
+		<div class="row">
+			<div class="col-lg-4" style="margin-top:25px;margin-bottom:25px;">
+				<a href="<?=site_url("admin/project");?>" class="btn btn-success">Done</a>
+			</div>
+		</div>
     </div>
     <!-- /.panel-body -->
 </div>

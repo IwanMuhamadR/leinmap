@@ -45,7 +45,7 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span class="text-muted"><?php echo $this->session->userdata('username');?><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i></span>
+                    <span class="text-muted"><?php echo $this->session->userdata('name');?><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i></span>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -86,9 +86,13 @@
                         <a <?php echo $breadcrumb=="finance"?'class="active"':"";?> href="<?php echo site_url("admin/finance");?>"><i class="fa fa-money fa-fw"></i> Finance</a>
                     </li>
 					<li>
-                        <a <?php echo $breadcrumb=="finance"?'class="active"':"";?> href="<?php echo site_url("admin/user");?>"><i class="fa fa-users fa-fw"></i> Users</a>
+                        <a <?php echo $breadcrumb=="user"?'class="active"':"";?> href="<?php echo site_url("admin/user");?>"><i class="fa fa-users fa-fw"></i> Users</a>
                     </li>
-
+					<?php if($this->session->userdata('usergroup')==1):?>
+					<li>
+                        <a <?php echo $breadcrumb=="log"?'class="active"':"";?> href="<?php echo site_url("admin/log");?>"><i class="fa fa-info fa-fw"></i> Log</a>
+                    </li>
+					<?php endif;?>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

@@ -2,65 +2,33 @@
 
 class Finance_model extends CI_Model
 {
-    public function load_form_rules(){
-        $form_rules = array(
-            array(
-                'field' => 'username',
-                'label' => 'Username',
-                'rules' => 'required',
-            ),
-            array(
-                'field' => 'password',
-                'label' => 'Password',
-                'rules' => 'required',
-            ),
-        );
-        return $form_rules;
-    }
-
-    public function validation(){
-        $form = $this->load_form_rules();
-        $this->form_validation->set_rules($form);
-        if ($this->form_validation->run())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public function userCheck(){
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        $query = $this->db->select('username','password','name')
-                    ->from('users')
-                    ->where('username',$username)
-                    ->where('password',$password)
-                    ->limit(1)
-                    ->get();
-
-        if($query->num_rows() == 1){
-            $data = array(
-                'isLogin' => true,
-                'username' => $username,
-            );
-            $this->session->set_userdata($data);
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    function logout()
-    {
-        $data = array(
-            'isLogin' => false,
-            'username' => ''
-        );
-        $this->session->unset_userdata($data);
-        $this->session->sess_destroy();
-    }
+    function getFinance()
+	{
+		$arr = $this->db->get('finance');		
+		return $arr->result();
+	}
+	
+	function add($arr){
+		$arrLog = array(
+			'usersid' => $this->session->userdata('usersid'),
+			'ipaddress' => $_SERVER['REMOTE_ADDR'],
+			'log' => "Insert Finance", // Keterangan log ngapain, ubah sesuai aksi (Insert/update/delete)
+		);
+		
+		//Transaction Insert data + insert Log
+		$this->db->trans_begin();
+			$this->db->insert('finance',$arr);
+			$this->db->set('logdate','NOW()',false);
+			$this->db->insert('logevent',$arrLog);
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+	}
 }

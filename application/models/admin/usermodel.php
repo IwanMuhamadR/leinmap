@@ -4,7 +4,9 @@ class Usermodel extends CI_Model
 {	
 	function getUser()
 	{
-		$arr = $this->db->get('users');		
+		$arr = $this->db->where('usergroupid !=',1)
+				->order_by('name')
+				->get('users');		
 		return $arr->result();
 	}
 	
@@ -16,7 +18,11 @@ class Usermodel extends CI_Model
 	
 	function getUserByStatus()
 	{
-		$arr = $this->db->where('status', 'Available')->from('users')->get();		
+		$arr = $this->db
+					->where('usergroupid !=', 1)
+					->where('status', 'Available')
+					->from('users')
+					->get();		
 		return $arr->result();
 	}
 	

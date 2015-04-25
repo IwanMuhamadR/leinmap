@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2015 at 01:00 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.16
+-- Generation Time: Apr 21, 2015 at 04:31 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `leinmap`
 --
-CREATE DATABASE IF NOT EXISTS `leinmap` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `leinmap`;
 
 -- --------------------------------------------------------
 
@@ -35,15 +33,17 @@ CREATE TABLE IF NOT EXISTS `detail_project` (
   PRIMARY KEY (`detailprojectid`),
   KEY `fk_projectid` (`projectid`),
   KEY `fk_users` (`usersid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `detail_project`
 --
 
 INSERT INTO `detail_project` (`detailprojectid`, `projectid`, `usersid`) VALUES
-(1, 20, 13),
-(6, 18, 12);
+(12, 22, 12),
+(13, 22, 14),
+(14, 23, 14),
+(15, 23, 15);
 
 -- --------------------------------------------------------
 
@@ -55,9 +55,17 @@ CREATE TABLE IF NOT EXISTS `finance` (
   `financeid` int(11) NOT NULL AUTO_INCREMENT,
   `datefinance` date DEFAULT NULL,
   `status` varchar(10) DEFAULT NULL,
+  `nominal` int(11) NOT NULL,
   `info` text,
   PRIMARY KEY (`financeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `finance`
+--
+
+INSERT INTO `finance` (`financeid`, `datefinance`, `status`, `nominal`, `info`) VALUES
+(1, '2015-04-20', 'Income', 200000000, 'BDV Project');
 
 -- --------------------------------------------------------
 
@@ -77,6 +85,24 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `item_project`
+--
+
+CREATE TABLE IF NOT EXISTS `item_project` (
+  `itemprojectid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `description` text,
+  `quantity` int(11) DEFAULT NULL,
+  `qtylabel` varchar(35) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `projectid` int(11) NOT NULL,
+  PRIMARY KEY (`itemprojectid`),
+  KEY `fk_itemproject` (`projectid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `logevent`
 --
 
@@ -84,6 +110,7 @@ CREATE TABLE IF NOT EXISTS `logevent` (
   `logeventid` int(11) NOT NULL AUTO_INCREMENT,
   `logdate` datetime NOT NULL,
   `usersid` int(11) NOT NULL,
+  `ipaddress` varchar(25) NOT NULL,
   `log` text NOT NULL,
   PRIMARY KEY (`logeventid`),
   KEY `fk_users` (`usersid`)
@@ -103,18 +130,18 @@ CREATE TABLE IF NOT EXISTS `project` (
   `period` int(11) NOT NULL,
   `price` int(11) NOT NULL,
   `po` varchar(100) NOT NULL,
+  `client` varchar(120) NOT NULL,
   `isdone` varchar(12) NOT NULL,
   PRIMARY KEY (`projectid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `project`
 --
 
-INSERT INTO `project` (`projectid`, `name`, `datebegin`, `dateend`, `period`, `price`, `po`, `isdone`) VALUES
-(18, 'bdv', '2015-04-01', '2015-04-11', 10, 2000000, 'iwan', 'Done'),
-(19, 'Tboot', '2015-04-03', '2015-04-17', 14, 5000000, 'iwan', 'On Progress'),
-(20, 'vote hunter', '2015-04-04', '2015-04-18', 14, 10000000, 'Budi', 'On Progress');
+INSERT INTO `project` (`projectid`, `name`, `datebegin`, `dateend`, `period`, `price`, `po`, `client`, `isdone`) VALUES
+(22, 'BDV', '2015-04-12', '2015-04-30', 18, 200000000, 'Leinmap Corp', 'A', 'Done'),
+(23, 'JDV', '2015-04-14', '2015-04-29', 15, 200000000, 'Leinmap Corp', 'B', 'Done');
 
 -- --------------------------------------------------------
 
@@ -156,17 +183,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `usergroupid` int(11) NOT NULL,
   PRIMARY KEY (`usersid`),
   KEY `fk_usergroup` (`usergroupid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`usersid`, `username`, `password`, `name`, `address`, `email`, `phone`, `status`, `usergroupid`) VALUES
-(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'Available', 1),
-(3, 'ujang', 'ujang', 'ujang gardu', 'Lembang', 'ujang@yahoo.com', '123456789', 'Not Available', 1),
+(1, 'leinmap', '2f887188c2cecfba420f38bff3a2bd0a', 'Leinmap Corp', 'Bandung', '', '', 'Available', 1),
 (12, 'hibishi', 'iwan', 'asep', 'iwan', 'iwaniwan', '12307', 'Available', 2),
-(13, 'thesayder', 'e10adc3949ba59abbe56e057f20f883e', 'Budi', 'Cianjur', 'budicianjur@yahoo.com', '02291280625', 'Available', 2);
+(13, 'thesayder', 'e10adc3949ba59abbe56e057f20f883e', 'Budi', 'Cianjur', 'budicianjur@yahoo.com', '02291280625', 'Available', 2),
+(14, 'alpha', '2c1743a391305fbf367df8e4f069f9f9', 'Alpha Centaury', 'Centaury', '', '', 'Available', 2),
+(15, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'Available', 2);
 
 --
 -- Constraints for dumped tables
@@ -184,6 +212,12 @@ ALTER TABLE `detail_project`
 --
 ALTER TABLE `invoice`
   ADD CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`projectid`) REFERENCES `project` (`projectid`);
+
+--
+-- Constraints for table `item_project`
+--
+ALTER TABLE `item_project`
+  ADD CONSTRAINT `item_project_ibfk_1` FOREIGN KEY (`projectid`) REFERENCES `project` (`projectid`);
 
 --
 -- Constraints for table `logevent`
