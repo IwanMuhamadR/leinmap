@@ -56,7 +56,7 @@
         			<td>
 						<a onclick="window.location='<?=base_url();?>admin/project/addteamview?pid=<?=$row->projectid;?>'" href="javascript:void(0)" class="btn btn-info"><i class="fa fa-list"></i></a>
                         <a href="<?=base_url('admin/project/updateview/'.$row->projectid);?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                        <a onclick="return confirm('Anda yakin akan menghapus data ini?');" href="<?=base_url();?>admin/project/delete?pid=<?=$row->projectid;?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a onclick="return confirm('Anda yakin akan menghapus data ini?');" href="<?=base_url('admin/project/delete/'.$row->projectid);?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
         			</td>
         		</tr>
 				<?php

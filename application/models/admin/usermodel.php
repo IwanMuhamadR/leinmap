@@ -9,6 +9,15 @@ class Usermodel extends CI_Model
 				->get('users');		
 		return $arr->result();
 	}
+	function getAvaUser()
+	{
+		$arr = $this->db
+				->where('usergroupid !=',1)
+				->where('status','Available')
+				->order_by('name')
+				->get('users');		
+		return $arr->result();
+	}
 	
 	function getUserById($id)
 	{

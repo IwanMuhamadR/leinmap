@@ -6,13 +6,13 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
+<!-- /.row 
 <div class="row" style="margin-bottom: 20px">
     <div class="col-lg-12">
         <a href="<?=base_url('admin/project/addproject');?>" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></a>
         <a onclick="location.reload();" href="#" class="btn btn-info"><i class="glyphicon glyphicon-refresh"></i></a>
     </div>
-</div>
+</div>-->
 <!-- /.row -->
 <div class="row">
 <div class="col-lg-12">
@@ -27,7 +27,9 @@
         		<tr>
         			<th>No</th>
         			<th>Date</th>
-        			<th>User</th>
+        			<th>Time</th>
+        			<th>Username</th>
+        			<th>Name</th>
         			<th>Ipaddress</th>
         			<th>Log</th>
         		</tr>
@@ -35,24 +37,17 @@
         	<tbody>
 				<?php
 				$nomor = 1;
-					foreach($results as $row)
+					foreach($logData as $row)
 					{
 				?>
         		<tr>
         			<td><?php echo $nomor; ?></td>
-        			<td><a href="<?php echo site_url('admin/project/projectdetails/'.$row->projectid);?>"><?php echo $row->name; ?></td>
-        			<td><?php echo $row->datebegin; ?></td>
-        			<td><?php echo $row->dateend; ?></td>
-        			<td><?php echo $row->period; ?> days</td>
-					<td><div class="text text-success"><?php echo "Rp. ". number_format($row->price,0,'.',',')?></div></td>
-					<td><?php echo $row->po; ?></td>
-					<td><?php echo $row->client; ?></td>
-        			<td><div class="label label-<?php echo $row->isdone=="Done"?"success":"warning"?>"><?php echo $row->isdone; ?></div></td>
-        			<td>
-						<a onclick="window.location='<?=base_url();?>admin/project/addteamview?pid=<?=$row->projectid;?>'" href="javascript:void(0)" class="btn btn-info"><i class="fa fa-list"></i></a>
-                        <a href="<?=base_url('admin/project/updateview/'.$row->projectid);?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                        <a onclick="return confirm('Anda yakin akan menghapus data ini?');" href="<?=base_url();?>admin/project/delete?pid=<?=$row->projectid;?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-        			</td>
+        			<td><?php echo substr($row->logdate,0,10); ?></td>
+        			<td><?php echo substr($row->logdate,-8); ?></td>
+        			<td><?php echo $row->username; ?></td>
+        			<td><?php echo $row->name; ?></td>
+        			<td><?php echo $row->ipaddress; ?></td>
+					<td><?php echo $row->log; ?></td>
         		</tr>
 				<?php
 					$nomor++;

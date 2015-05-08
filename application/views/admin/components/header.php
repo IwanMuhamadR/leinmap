@@ -13,6 +13,7 @@
     <link href="<?php echo base_url(); ?>assets/css/timeline.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/sb-admin-2.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/morris.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/seicss.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet">	
 	<link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" >
     <link rel="SHORTCUT ICON" href="<?php echo base_url(); ?>assets/img/fav.png" />

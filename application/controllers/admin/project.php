@@ -12,7 +12,7 @@ class Project extends MY_Controller{
 		parent::__construct();
 		$this->load->model('admin/projectmodel','project',true);
 		$this->load->model('admin/detail_project_model','detail',true);
-		$this->load->model('admin/usermodel');
+		$this->load->model('admin/usermodel','user',true);
 		$this->load->model('admin/detailmodel');
 	}
 	
@@ -27,6 +27,7 @@ class Project extends MY_Controller{
 	
 	public function addproject()
 	{
+		$this->data['team'] = $this->user->getAvaUser();
 		$this->load->view('admin/components/header',$this->data);
 		$this->load->view('admin/addprojectview');
 		$this->load->view('admin/components/footer');
@@ -79,9 +80,9 @@ class Project extends MY_Controller{
 		}
 	}
 	
-	public function delete()
+	public function delete($id)
 	{
-		$id=$_GET['pid'];
+		//$id=$_GET['pid'];
 		$this->load->model('admin/projectmodel');
 		if($this->projectmodel->deleteProject($id)==TRUE)
 		{

@@ -15,65 +15,106 @@
 </div>
 <!-- /.row -->
 <div class="row">
-<div class="col-lg-12">
-<div class="panel panel-default">
-    <!-- /.panel-heading -->
-    <div class="panel-body">
-		<table>
-			<tr>
-				<th width="150">Nama Proyek</th>
-				<td width="30">:</td>
-				<td><?=$dataproject->name;?></td>
-			</tr>
-			<tr>
-				<th>Tanggal mulai</th>
-				<td>:</td>
-				<td><?=$dataproject->datebegin;?></td>
-			</tr>
-			<tr>
-				<th>Tanggal selesai</th>
-				<td>:</td>
-				<td><?=$dataproject->dateend;?></td>
-			</tr>
-			<tr>
-				<th>Harga</th>
-				<td>:</td>
-				<td><?="Rp. ".number_format($dataproject->price,0,'.',',');?></td>
-			</tr>
-			<tr>
-				<th>Client</th>
-				<td>: </td>
-				<td><?=$dataproject->client;?></td>
-			</tr>
-			<tr>
-				<th>P.O</th>
-				<td>: </td>
-				<td><?=$dataproject->po;?></td>
-			</tr>
-			<?php 
-				$count=0;
-				foreach($datateam as $row):
-			?>
-			<tr>
-				<th><?=$count==0?'Team':'';?></th>
-				<td><?=$count==0?':':'';?></td>
-				<td>  <?=$row->name;?></td>
-			</tr>
-			<?php
-				$count++;
-				endforeach
-			;?>
-		</table>
+<div class="col-lg-10 col-lg-offset-1">
+	<div class="panel panel-info">
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="text-right">
+						<img src="<?=base_url('assets/img/logoinvoice.png');?>">
+					</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<address> 
+						<strong>Leinmap</strong><br> 
+						Cisaranten Wetan Ujung Berung Bandung 40293<br> 
+						085722688411
+					</address>
+				</div>
+			</div>
+			<table class="table table-responsive">
+				<tr style="background-color:#7e97ad;color:#fff;">
+					<th>INVOICE</th>
+					<th><div class="text-right">DATE</div></th>
+				</tr>
+			</table>
+			<table class="table table-striped">
+				<tr>
+					<th>BILL TO</th>
+					<th>SHIP TO</th>
+					<th>PROJECT NAME</th>
+				</tr>
+				<tr>
+					<td><?=$dataproject->client;?></td>
+					<td>Same as recipient</td>
+					<td><?=$dataproject->name;?></td>
+				</tr>
+			</table>		
+			<table class="table table-responsive">
+				<tr style="background-color:#7e97ad;color:#fff;">
+					<th>QUANTITY</th>
+					<th>DESCRIPTION</th>
+					<th>UNIT PRICE</th>
+					<th>TOTAL</th>
+				</tr>
+				<tr>
+					<td><?=$dataproject->client;?></td>
+					<td>Same as recipient</td>
+					<td><?=$dataproject->name;?></td>
+					<td><?=$dataproject->name;?></td>
+				</tr>
+				<tr>
+					<td><?=$dataproject->client;?></td>
+					<td>Same as recipient</td>
+					<td><?=$dataproject->name;?></td>
+					<td><?=$dataproject->name;?></td>
+				</tr>
+				<tr>
+					<td><?=$dataproject->client;?></td>
+					<td>Same as recipient</td>
+					<td><?=$dataproject->name;?></td>
+					<td><?=$dataproject->name;?></td>
+				</tr>
+				<tr>
+					<td><?=$dataproject->client;?></td>
+					<td>Same as recipient</td>
+					<td><?=$dataproject->name;?></td>
+					<td><?=$dataproject->name;?></td>
+				</tr>
+			</table>
+			<div class="col-lg-6 col-lg-offset-6">
+				<table width="100%">
+					<tr class="border_bottom">
+						<td style="color:#7e97ad;">SUBTOTAL</td>
+						<td class="text-right">Same as recipient</td>
+					</tr>
+					<tr class="border_bottom">
+						<td style="color:#7e97ad;">SALES TAX</td>
+						<td class="text-right">-</td>
+					</tr>
+					<tr class="border_bottom">
+						<td style="color:#7e97ad;">SHIPPING HANDLING</td>
+						<td class="text-right">-</td>
+					</tr>
+					<tr class="border_bottom">
+						<td style="color:#7e97ad;">TOTAL DUE BY </td>
+						<td class="text-right">Same as recipient</td>
+					</tr>
+				</table>
+				<br><br>
+				<p>Thank you for your business!</p>
+				<br><br>
+			</div>
+		</div>
+		<!-- /.panel-body -->
 	</div>
-    <!-- /.panel-body -->
-</div>
-<!-- /.panel -->
+	<!-- /.panel -->
 </div>
 <!-- /.col-lg-8 -->
-
-<!-- /.col-lg-4 -->
 </div>
-<!-- /.row -->
+
 </div>
 <!-- /#page-wrapper -->
 

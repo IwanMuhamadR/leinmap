@@ -21,7 +21,26 @@ class Projectmodel extends CI_Model
 	
 	function addProject($arr)
 	{
-		$this->db->insert('project', $arr);
+		$arrLog = array(
+				'usersid' => $this->session->userdata('usersid'),
+				'ipaddress' => $_SERVER['REMOTE_ADDR'],
+				'log' => "Insert Project ".$arr['name'], // Keterangan log ngapain, ubah sesuai aksi (Insert/update/delete)
+			);
+			//Transaction Insert data + insert Log
+		$this->db->trans_begin();
+			$this->db->insert('project', $arr);
+			$this->db->set('logdate','NOW()',false);
+			$this->db->insert('logevent',$arrLog);
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
 	}
 	
 	function updateProject()
@@ -53,11 +72,19 @@ class Projectmodel extends CI_Model
 						 ->result();
 				// print_r($hasil[1]->usersid);die;
 				
+				$arrLog = array(
+					'usersid' => $this->session->userdata('usersid'),
+					'ipaddress' => $_SERVER['REMOTE_ADDR'],
+					'log' => "Update Project ".$arr['name'], // Keterangan log ngapain, ubah sesuai aksi (Insert/update/delete)
+				);
+				
 				//Transaction
 				$this->db->trans_begin();
 					foreach($hasil as $row){
 						$this->db->where('usersid', $row->usersid)->update('users', array('status'=>'Available'));
-					}				
+					}	
+					$this->db->set('logdate','NOW()',false);
+					$this->db->insert('logevent',$arrLog);			
 				if ($this->db->trans_status() === FALSE)
 				{
 					$this->db->trans_rollback();
@@ -80,7 +107,27 @@ class Projectmodel extends CI_Model
 	
 	function deleteProject($id)
 	{
-		$this->db->where('projectid', $id)->delete('detail_project');
-		$this->db->where('projectid', $id)->delete('project');
+		$arrLog = array(
+			'usersid' => $this->session->userdata('usersid'),
+			'ipaddress' => $_SERVER['REMOTE_ADDR'],
+			'log' => "Delete Project", // Keterangan log ngapain, ubah sesuai aksi (Insert/update/delete)
+		);
+		
+		//Transaction Insert data + insert Log
+		$this->db->trans_begin();
+			$this->db->where('projectid', $id)->delete('detail_project');
+			$this->db->where('projectid', $id)->delete('project');
+			$this->db->set('logdate','NOW()',false);
+			$this->db->insert('logevent',$arrLog);
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
 	}
 }

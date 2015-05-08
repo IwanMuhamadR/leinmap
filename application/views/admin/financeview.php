@@ -14,14 +14,14 @@
     </div>
 </div>
 <!-- /.row -->
-<?php $fdata = $this->session->flashdata('msg')?>
+<?php $process = $this->session->flashdata('process')?>
 <?php 
-	if($fdata):
-	$fdataMsg = $this->session->flashdata('msgSts');
+	if($process):
+	$msgSts = $this->session->flashdata('msgSts');
 ?>
-	<div class="alert alert-<?php echo !empty($fdataMsg)?"success":"danger";?> alert-dismissable"> 
+	<div class="alert alert-<?php echo !empty($msgSts)?"success":"danger";?> alert-dismissable"> 
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true"> &times; </button> 
-		<?=$fdataMsg==true?"Success! Data input success.":"Error! Data input failed.";?>
+		<?=$this->session->flashdata('msg')?>
 	</div>
 <?php endif;?>
 <div class="row">
@@ -56,8 +56,8 @@
         			<td><?php echo "Rp.".number_format($row->nominal,0,".",","); ?></td>
         			<td><?php echo $row->info; ?></td>
         			<td>
-                        <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                        <a onclick="return confirm('Anda yakin akan menghapus data ini?');" href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                        <a href="<?=base_url('admin/finance/edit/'.$row->financeid);?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                        <a onclick="return confirm('Anda yakin akan menghapus data ini?');" href="<?=base_url('admin/finance/delete/'.$row->financeid);?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
         			</td>
         		</tr>
 				<?php

@@ -1,10 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Projectmodel extends CI_Model
+class Logmodel extends CI_Model
 {	
 	function getLog()
 	{
-		$arr = $this->db->get('project');		
+		$arr = $this->db->select('*')
+						->from('logevent l')		
+						->join('users u','l.usersid=u.usersid')		
+						->order_by('logeventid','desc')
+						->get();		
 		return $arr->result();
 	}
 	

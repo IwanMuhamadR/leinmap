@@ -1,27 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Logmodel extends MY_Controller{
+class Log extends MY_Controller{
 
 
     private $data = array(
         'title' => "Leinmap IT Solution",
         'breadcrumb' => "log",
+        'logData' => "",
         );
 	
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('admin/projectmodel','project',true);
-		$this->load->model('admin/detail_project_model','detail',true);
-		$this->load->model('admin/usermodel');
-		$this->load->model('admin/detailmodel');
+		$this->load->model('admin/logmodel','log',true);
 	}
 	
 	public function index()
 	{
-		$this->load->model('admin/projectmodel');
-		$resultdata['results'] = $this->projectmodel->getProject();
+		$this->data['logData'] = $this->log->getLog();
 		$this->load->view('admin/components/header',$this->data);
-		$this->load->view('admin/projectview', $resultdata);
+		$this->load->view('admin/logview', $this->data);
 		$this->load->view('admin/components/footer');
     }
 	

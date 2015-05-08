@@ -1,3 +1,23 @@
+<script>
+	counter = 0;
+    function addRow()
+    {
+		alert(counter);
+		CountNext = counter+1;
+		/*
+		document.getElementById("input"+counter).innerHTML = "<tr id=\"input"+CountNext+"\"></tr>"+
+												"<tr><td><input type=\"text\" class=\"form-control\" name=\"itemname[]\"></td>"+
+												"<td><select class=\"form-control\" name=\"itemqty\">"+ 
+												"<option value=\"1\">1</option><option value=\"2\">2</option><option value=\"3\">3</option><option value=\"4\">4</option><option value=\"5\">5</option></select></td>"+
+							"<td><input type=\"text\" class=\"form-control\" name=\"qtylabel[]\"></td>"+
+							"<td><input type=\"text\" class=\"form-control\" name=\"itemprice[]\"></td>"+
+							"<td><input type=\"text\" class=\"form-control\" name=\"itemtotalprice[]\" disabled></td>"+
+							"<td><button type=\"button\" class=\"btn btn-danger\"><i class=\"fa fa-sm fa-minus\"></i></button></td></tr>";
+		counter++;*/
+	}
+
+</script>
+
 
 <div id="page-wrapper" style="margin-top: 50px">
 <div class="row">
@@ -61,21 +81,43 @@
 					<label>Team</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="price" disabled><br>
+					<?php foreach($team as $row):?>
+						<div class="checkbox"> 
+							<label><input name="teamCB[]" id="<?php echo $row->usersid;?>" type="checkbox" value="<?php echo $row->usersid;?>"><?php echo $row->name;?></label> 
+						</div>
+					<?php endforeach;?>
 				</div>
-				<div class="col-lg-4">
-					<a href="#" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></a>
-				</div>
-			</div>
+			</div><br>
 			<div class="row">
 				<div class="col-lg-2">
 					<label>Item</label>
 				</div>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" name="price" disabled><br>
-				</div>
-				<div class="col-lg-4">
-					<a href="#" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i></a>
+				<div class="col-lg-10">
+					<table class="table">
+						<tr>
+							<th>Name</th>
+							<th width="50">Quantity</th>
+							<th width="100">Qty Label</th>
+							<th>Price</th>
+							<th>Total Price</th>
+							<th>Action</th>
+						</tr>
+						<tr id="input0"></tr>
+						<tr>
+							<td><input type="text" class="form-control" name="itemname[]"></td>
+							<td>
+								<select class="form-control" name="itemqty"> 
+									<?php for($i=1;$i<=5;$i++):?>
+										<option value="<?=$i;?>"><?=$i;?></option>
+									<?php endfor;?>
+								</select>
+							</td>
+							<td><input type="text" class="form-control" name="qtylabel[]"></td>
+							<td><input type="text" class="form-control" name="itemprice[]"></td>
+							<td><input type="text" class="form-control" name="itemtotalprice[]" disabled></td>
+							<td><button type="button" class="btn btn-success" onClick="addRow()"><i class="fa fa-sm fa-plus"></i></button></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div class="row">

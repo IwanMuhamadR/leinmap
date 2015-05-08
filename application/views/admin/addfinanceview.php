@@ -25,11 +25,11 @@
 <div class="col-lg-12">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-tasks fa-fw"></i> Add Finance
+        <i class="fa fa-tasks fa-fw"></i> <?=$title_form?>
     </div>
 	
 	<?php
-		echo form_open('admin/finance/add');
+		echo form_open($form_action);
 	?>
     <!-- /.panel-heading -->
     <div class="panel-body">
@@ -50,7 +50,7 @@
 				</div>
 				<div class="col-lg-4">
 					<div class='input-group date'>
-						<input type='text' class="form-control" name="date" id="datepicker" required/>
+						<input type='text' class="form-control" value="<?php echo empty($table_data->datefinance)?"":$table_data->datefinance;?>" name="date" id="datepicker" required/>
 						<span class="input-group-addon">
 							<span class="glyphicon glyphicon-calendar"></span>
 						</span>
@@ -65,10 +65,10 @@
 				<div class="col-lg-4">
 					<div class='input-group'>
 						<label class="checkbox"> 
-							<input type="radio" name="status" id="optionsRadios3" value="Income" checked> Income 
+							<input type="radio" name="status" id="optionsRadios3" value="Income" <?php echo !empty($table_data->status)?($table_data->status=="Income"?"checked":""):"checked"?>> Income 
 						</label> 
 						<label class="checkbox"> 
-							<input type="radio" name="status" id="optionsRadios4" value="Spent"> Spent 
+							<input type="radio" name="status" id="optionsRadios4" value="Spent" <?php echo !empty($table_data->status)?($table_data->status=="Spent"?"checked":""):""?>> Spent 
 						</label>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 					<label>Nominal</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="nominal" id="nominal" onkeyup="hitung()"><br>
+					<input type="text" class="form-control" name="nominal" id="nominal" value="<?php echo empty($table_data->nominal)?"":$table_data->nominal;?>" onkeyup="hitung()"><br>
 				</div>
 			</div>
 			<div class="row">
@@ -87,14 +87,15 @@
 					<label>Info</label>
 				</div>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" name="info"><br />
+					<input type="text" class="form-control" name="info" value="<?php echo empty($table_data->info)?"":$table_data->info;?>"><br />
 				</div>
 			</div>			
 			<div class="row">
 				<div class="col-lg-2">
 				</div>
 				<div class="col-lg-4">
-					<button type="submit" class="btn btn-success">Save</button>
+					<!--<button type="submit" class="btn btn-success" name="submit" id="submit">Save</button>-->
+					<input type="submit" value="Save" class="btn btn-success" name="submit">
 					<button type="reset" class="btn btn-warning">Reset</button>
 				</div>
 			</div>
