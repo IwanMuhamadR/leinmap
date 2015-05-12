@@ -7,10 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <!-- attach CSS styles -->
-<<<<<<< HEAD
-=======
-    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
->>>>>>> origin/master
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/metisMenu/metisMenu.min.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/timeline.css" rel="stylesheet" />
@@ -52,14 +48,6 @@
                     <span class="text-muted"><?php echo $this->session->userdata('name');?><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i></span>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-<<<<<<< HEAD
-=======
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
->>>>>>> origin/master
                     <li><a href="<?php echo site_url("admin/login/logout");?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
@@ -72,20 +60,6 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-<<<<<<< HEAD
-=======
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
->>>>>>> origin/master
                     <li>
                         <a <?php echo $breadcrumb=="home"?'class="active"':"";?> href="<?php echo site_url("admin/home");?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>

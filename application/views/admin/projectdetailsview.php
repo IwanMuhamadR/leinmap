@@ -10,11 +10,7 @@
 <div class="row" style="margin-bottom: 20px">
     <div class="col-lg-12">
         <a href="<?=base_url('admin/project')?>" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i></a>
-<<<<<<< HEAD
         <a href="<?=base_url();?>admin/invoice/pdf?pid=<?=$dataproject->projectid;?>" class="btn btn-info"><i class="fa fa-lg fa-save"></i></a>
-=======
-        <a href="<?=base_url('admin/project/addview');?>" class="btn btn-info"><i class="fa fa-lg fa-save"></i></a>
->>>>>>> origin/master
     </div>
 </div>
 <!-- /.row -->
