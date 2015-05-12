@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
@@ -6,6 +7,15 @@
 -- Generation Time: May 12, 2015 at 10:04 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.16
+=======
+-- version 4.1.6
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 08, 2015 at 03:28 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
+>>>>>>> origin/master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +29,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `leinmap`
 --
+<<<<<<< HEAD
 CREATE DATABASE IF NOT EXISTS `leinmap` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `leinmap`;
+=======
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -35,7 +48,11 @@ CREATE TABLE IF NOT EXISTS `detail_project` (
   PRIMARY KEY (`detailprojectid`),
   KEY `fk_projectid` (`projectid`),
   KEY `fk_users` (`usersid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+>>>>>>> origin/master
 
 --
 -- Dumping data for table `detail_project`
@@ -45,9 +62,13 @@ INSERT INTO `detail_project` (`detailprojectid`, `projectid`, `usersid`) VALUES
 (12, 22, 12),
 (13, 22, 14),
 (14, 23, 14),
+<<<<<<< HEAD
 (15, 23, 15),
 (16, 24, 13),
 (17, 24, 15);
+=======
+(15, 23, 15);
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -87,7 +108,11 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `projectid` int(11) NOT NULL,
   PRIMARY KEY (`invoiceid`),
   KEY `fk_invoiceid` (`projectid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+>>>>>>> origin/master
 
 --
 -- Dumping data for table `invoice`
@@ -95,8 +120,12 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 
 INSERT INTO `invoice` (`invoiceid`, `nomorinvoice`, `date`, `projectid`) VALUES
 (1, '123', '2015-04-12', 22),
+<<<<<<< HEAD
 (2, '312', '2015-04-24', 23),
 (3, '0981205201', '2015-05-12', 24);
+=======
+(2, '312', '2015-04-24', 23);
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -114,6 +143,7 @@ CREATE TABLE IF NOT EXISTS `item_project` (
   `projectid` int(11) NOT NULL,
   PRIMARY KEY (`itemprojectid`),
   KEY `fk_itemproject` (`projectid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
@@ -125,6 +155,9 @@ INSERT INTO `item_project` (`itemprojectid`, `name`, `quantity`, `qtylabel`, `pr
 (2, 'Timeline', 4, 'satu', 1000000, 1000000, 24),
 (3, 'Map', 4, 'satu', 300000, 300000, 24),
 (4, 'CRUD', 4, 'empat', 500000, 2000000, 24);
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -140,7 +173,11 @@ CREATE TABLE IF NOT EXISTS `logevent` (
   `log` text NOT NULL,
   PRIMARY KEY (`logeventid`),
   KEY `fk_users` (`usersid`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+=======
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+>>>>>>> origin/master
 
 --
 -- Dumping data for table `logevent`
@@ -176,8 +213,12 @@ INSERT INTO `logevent` (`logeventid`, `logdate`, `usersid`, `ipaddress`, `log`) 
 (27, '2015-04-27 22:18:22', 1, '::1', 'Delete Finance'),
 (28, '2015-04-27 22:18:51', 1, '::1', 'Delete Finance'),
 (29, '2015-04-27 22:23:32', 1, '::1', 'Delete Finance'),
+<<<<<<< HEAD
 (30, '2015-04-27 22:25:58', 1, '::1', 'Delete Project'),
 (31, '2015-05-12 12:17:44', 1, '::1', 'Insert Project vote hunter');
+=======
+(30, '2015-04-27 22:25:58', 1, '::1', 'Delete Project');
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -195,18 +236,29 @@ CREATE TABLE IF NOT EXISTS `project` (
   `po` varchar(100) NOT NULL,
   `client` varchar(120) NOT NULL,
   `isdone` varchar(12) NOT NULL,
+<<<<<<< HEAD
   `isdeleted` int(11) NOT NULL,
   PRIMARY KEY (`projectid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+=======
+  PRIMARY KEY (`projectid`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+>>>>>>> origin/master
 
 --
 -- Dumping data for table `project`
 --
 
+<<<<<<< HEAD
 INSERT INTO `project` (`projectid`, `name`, `datebegin`, `dateend`, `period`, `price`, `po`, `client`, `isdone`, `isdeleted`) VALUES
 (22, 'BDV', '2015-05-05', '2015-05-19', 14, 200000000, 'Leinmap Corp', 'A', 'Done', 0),
 (23, 'JDV', '2015-05-04', '2015-05-25', 21, 200000000, 'Leinmap Corp', 'B', 'Done', 0),
 (24, 'vote hunter', '2015-05-07', '2015-06-04', 28, 3300000, 'Leinmap Corp', 'Dedi', 'On Progress', 0);
+=======
+INSERT INTO `project` (`projectid`, `name`, `datebegin`, `dateend`, `period`, `price`, `po`, `client`, `isdone`) VALUES
+(22, 'BDV', '2015-04-12', '2015-04-30', 18, 200000000, 'Leinmap Corp', 'A', 'Done'),
+(23, 'JDV', '2015-04-14', '2015-04-29', 15, 200000000, 'Leinmap Corp', 'B', 'Done');
+>>>>>>> origin/master
 
 -- --------------------------------------------------------
 
@@ -257,9 +309,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`usersid`, `username`, `password`, `name`, `address`, `email`, `phone`, `status`, `usergroupid`) VALUES
 (1, 'leinmap', '2f887188c2cecfba420f38bff3a2bd0a', 'Leinmap Corp', 'Bandung', '', '', 'Available', 1),
 (12, 'hibishi', '01ccce480c60fcdb67b54f4509ffdb56', 'asep', 'iwan', 'iwaniwan', '12307', 'Available', 2),
+<<<<<<< HEAD
 (13, 'thesayder', 'e10adc3949ba59abbe56e057f20f883e', 'Budi', 'Cianjur', 'budicianjur@yahoo.com', '02291280625', 'Not Available', 2),
 (14, 'alpha', '2c1743a391305fbf367df8e4f069f9f9', 'Alpha Centaury', 'Centaury', '', '', 'Available', 2),
 (15, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'Not Available', 2);
+=======
+(13, 'thesayder', 'e10adc3949ba59abbe56e057f20f883e', 'Budi', 'Cianjur', 'budicianjur@yahoo.com', '02291280625', 'Available', 2),
+(14, 'alpha', '2c1743a391305fbf367df8e4f069f9f9', 'Alpha Centaury', 'Centaury', '', '', 'Available', 2),
+(15, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 'iwan', 'Bandung', 'im_ridwannuloh@yahoo.com', '088218038976', 'Available', 2);
+>>>>>>> origin/master
 
 --
 -- Constraints for dumped tables

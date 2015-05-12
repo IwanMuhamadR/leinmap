@@ -16,11 +16,18 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
+<<<<<<< HEAD
 		$this->data['getproject'] = $this->project->getProject();
 		$this->data['dataproject'] = $this->project->countProject();
 		$this->data['datafinance'] = $this->finance->totalFinance();
 		$this->load->view('admin/components/header',$this->data);
         $this->load->view('admin/homeview', $this->data);
+=======
+		$this->data['dataproject'] = $this->project->countProject();
+		$this->data['datafinance'] = $this->finance->totalFinance();
+		$this->load->view('admin/components/header',$this->data);
+        $this->load->view('admin/homeview',$this->data);
+>>>>>>> origin/master
         $this->load->view('admin/components/footer');
     }
 }
