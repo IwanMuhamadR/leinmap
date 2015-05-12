@@ -36,8 +36,8 @@
 			</div>
 			<table class="table table-responsive">
 				<tr style="background-color:#7e97ad;color:#fff;">
-					<th>INVOICE</th>
-					<th><div class="text-right">DATE</div></th>
+					<th>INVOICE <?php echo $datainvoice->nomorinvoice;?></th>
+					<th><div class="text-right">DATE : <?php echo date('d-M-Y',strtotime($datainvoice->date));?></div></th>
 				</tr>
 			</table>
 			<table class="table table-striped">
@@ -59,36 +59,20 @@
 					<th>UNIT PRICE</th>
 					<th>TOTAL</th>
 				</tr>
+				<?php foreach($dataitem as $row):?>
 				<tr>
-					<td><?=$dataproject->client;?></td>
-					<td>Same as recipient</td>
-					<td><?=$dataproject->name;?></td>
-					<td><?=$dataproject->name;?></td>
+					<td><?=$row->quantity;?></td>
+					<td><?=$row->qtylabel;?></td>
+					<td><?=$row->price;?></td>
+					<td><?=$row->totalprice;?></td>
 				</tr>
-				<tr>
-					<td><?=$dataproject->client;?></td>
-					<td>Same as recipient</td>
-					<td><?=$dataproject->name;?></td>
-					<td><?=$dataproject->name;?></td>
-				</tr>
-				<tr>
-					<td><?=$dataproject->client;?></td>
-					<td>Same as recipient</td>
-					<td><?=$dataproject->name;?></td>
-					<td><?=$dataproject->name;?></td>
-				</tr>
-				<tr>
-					<td><?=$dataproject->client;?></td>
-					<td>Same as recipient</td>
-					<td><?=$dataproject->name;?></td>
-					<td><?=$dataproject->name;?></td>
-				</tr>
+				<?php endforeach;?>
 			</table>
 			<div class="col-lg-6 col-lg-offset-6">
 				<table width="100%">
 					<tr class="border_bottom">
 						<td style="color:#7e97ad;">SUBTOTAL</td>
-						<td class="text-right">Same as recipient</td>
+						<td class="text-right"><?=$dataproject->price;?></td>
 					</tr>
 					<tr class="border_bottom">
 						<td style="color:#7e97ad;">SALES TAX</td>
@@ -99,8 +83,8 @@
 						<td class="text-right">-</td>
 					</tr>
 					<tr class="border_bottom">
-						<td style="color:#7e97ad;">TOTAL DUE BY </td>
-						<td class="text-right">Same as recipient</td>
+						<td style="color:#7e97ad;"><strong>TOTAL DUE BY </strong></td>
+						<td class="text-right"><?=$dataproject->price;?></td>
 					</tr>
 				</table>
 				<br><br>

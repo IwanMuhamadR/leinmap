@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '8f5306fdf5427e69e47ed9c602fa67ff0b115505';
+$config['encryption_key'] = 'seishin';
 
 /*
 |--------------------------------------------------------------------------
@@ -244,12 +244,12 @@ $config['encryption_key'] = '8f5306fdf5427e69e47ed9c602fa67ff0b115505';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
-$config['sess_cookie_name']		= 'leinmap_session';
+$config['sess_cookie_name']		= 'ci_session';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= FALSE;
-$config['sess_table_name']		= 'session_leinmap';
+$config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
@@ -279,7 +279,7 @@ $config['cookie_secure']	= FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = TRUE;
+$config['global_xss_filtering'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -294,9 +294,9 @@ $config['global_xss_filtering'] = TRUE;
 | 'csrf_expire' = The number in seconds the token should expire.
 */
 $config['csrf_protection'] = FALSE;
-$config['csrf_token_name'] = 'leinmap_token';
-$config['csrf_cookie_name'] = 'leinmap_cookie_token';
-$config['csrf_expire'] = 600;
+$config['csrf_token_name'] = 'csrf_test_name';
+$config['csrf_cookie_name'] = 'csrf_cookie_name';
+$config['csrf_expire'] = 7200;
 
 /*
 |--------------------------------------------------------------------------

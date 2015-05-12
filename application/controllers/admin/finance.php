@@ -27,6 +27,7 @@ class Finance extends MY_Controller {
         $this->load->view('admin/financeview',$this->data);
         $this->load->view('admin/components/footer');
     }
+
 	
 	public function addfinance()
 	{

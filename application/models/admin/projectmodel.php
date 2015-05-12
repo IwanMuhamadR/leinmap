@@ -4,7 +4,7 @@ class Projectmodel extends CI_Model
 {	
 	function getProject()
 	{
-		$arr = $this->db->get('project');		
+		$arr = $this->db->where('isdeleted',0)->get('project');		
 		return $arr->result();
 	}
 	
@@ -19,8 +19,16 @@ class Projectmodel extends CI_Model
 		return $arr;
 	}
 	
+	function countProject(){
+		$arr = $this->db->select('COUNT(*) as countProject')
+						->from('project')
+						->get()->row();
+		return $arr;
+	}
+	
 	function addProject($arr)
 	{
+		$insert_id = 0;
 		$arrLog = array(
 				'usersid' => $this->session->userdata('usersid'),
 				'ipaddress' => $_SERVER['REMOTE_ADDR'],
@@ -28,18 +36,19 @@ class Projectmodel extends CI_Model
 			);
 			//Transaction Insert data + insert Log
 		$this->db->trans_begin();
-			$this->db->insert('project', $arr);
 			$this->db->set('logdate','NOW()',false);
 			$this->db->insert('logevent',$arrLog);
+			$this->db->insert('project', $arr);
+			$insert_id = $this->db->insert_id();
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
-			return false;
+			return $insert_id;
 		}
 		else
 		{
 			$this->db->trans_commit();
-			return true;
+			return $insert_id;
 		}
 	}
 	
@@ -115,8 +124,9 @@ class Projectmodel extends CI_Model
 		
 		//Transaction Insert data + insert Log
 		$this->db->trans_begin();
-			$this->db->where('projectid', $id)->delete('detail_project');
-			$this->db->where('projectid', $id)->delete('project');
+			//$this->db->where('projectid', $id)->delete('detail_project');
+			//$this->db->where('projectid', $id)->delete('project');
+			$this->db->where('projectid', $id)->update('project',array('isdeleted'=>'1'));
 			$this->db->set('logdate','NOW()',false);
 			$this->db->insert('logevent',$arrLog);
 		if ($this->db->trans_status() === FALSE)

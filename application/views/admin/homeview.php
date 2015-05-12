@@ -16,8 +16,8 @@
                         <i class="fa fa-tasks fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">99</div>
-                        <div>Project!</div>
+                        <div class="huge"><?php echo $dataproject->countProject; ?></div>
+                        <div>Total Project!</div>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-6 col-md-6">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
@@ -38,7 +38,7 @@
                         <i class="fa fa-money fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">99</div>
+                        <div class="huge"><?php echo "Rp.".number_format($datafinance,0,".",","); ?></div>
                         <div>Finance!</div>
                     </div>
                 </div>

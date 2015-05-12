@@ -13,7 +13,16 @@ class Project extends MY_Controller{
 		$this->load->model('admin/projectmodel','project',true);
 		$this->load->model('admin/detail_project_model','detail',true);
 		$this->load->model('admin/usermodel','user',true);
-		$this->load->model('admin/detailmodel');
+		$this->load->model('admin/detailmodel','dm',true);
+		$this->load->model('admin/item_model','item',true);
+		$this->load->model('admin/invoice_model','invoice',true);
+	}
+	
+	public function InvoiceNumber(){
+		$a = rand(0,9);
+		$b = rand(0,9);
+		$c = rand(0,9);
+		return $a.$b.$c.date("dmY");
 	}
 	
 	public function index()
@@ -35,7 +44,9 @@ class Project extends MY_Controller{
 	
 	public function add()
 	{
+	
 		$name = $_POST['name'];
+		$client = $this->input->post('client');
 		$datebegin = $_POST['datebegin'];
 		$dateend = $_POST['dateend'];
 		$period = date_diff(date_create($datebegin), date_create($dateend));
@@ -44,6 +55,7 @@ class Project extends MY_Controller{
 		$isdone = $_POST['isdone'];
 		$arr = array(
 			'name' => $name,
+			'client' => $client,
 			'datebegin' => $datebegin,
 			'dateend' => $dateend,
 			'period' => $period->format('%R%a'),
@@ -52,7 +64,62 @@ class Project extends MY_Controller{
 			'isdone' => $isdone
 		);
 		$this->load->model('admin/projectmodel');
-		$this->projectmodel->addProject($arr);
+		
+		
+		$teamcb = $this->input->post('teamCB');
+		if(isset($teamcb)) {
+			for ($i = 0; $i < count($teamcb); $i++) {
+				$this->user->updateUserStatus($teamcb[$i]);
+			}
+		}
+		
+		$teamCB = $this->input->post('teamCB');
+		$itemname = $this->input->post('itemname');
+		$itemqty = $this->input->post('itemqty');
+		$qtylabel = $this->input->post('qtylabel');
+		$itemprice = $this->input->post('itemprice');
+		$itemtotalprice = $this->input->post('itemtotalprice');
+		//print_r('total price : '.$itemtotalprice);die;
+		$this->db->trans_begin();
+			$insert_id = $this->projectmodel->addProject($arr);
+			for ($i = 0; $i < count($teamCB); $i++){
+				$arrdm = array(
+					'projectid' => $insert_id,
+					'usersid' => $teamCB[$i]
+				);
+				$this->dm->addDetail($arrdm);
+			}
+			if(isset($itemname)) {
+				for ($i = 0; $i < count($itemname); $i++) {
+					$itemArr = array(
+						'name' => $itemname[$i],
+						'quantity' => $itemqty,
+						'qtylabel' => $qtylabel[$i],
+						'price' => $itemprice[$i],
+						'totalprice' => $itemtotalprice[$i],
+						'projectid' => $insert_id,
+					);
+					
+					$this->item->add($itemArr);
+				}
+			}
+			//INSERT Invoice TO DB HERE NEXT-TO-DO
+			$arrInvoice = array(
+						'nomorinvoice' => $this->InvoiceNumber(),
+						'projectid' => $insert_id,
+					);
+			$this->invoice->add($arrInvoice);
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+		}
+		else
+		{
+			$this->db->trans_commit();
+		}
+		
+		
+		
 		redirect('admin/project');		
 	}
 	
@@ -97,8 +164,8 @@ class Project extends MY_Controller{
 		$id=$_GET['pid'];
 		$resultdata['find'] = $this->project->getProjectById($id);
 		$resultdata['id'] = $id;
-		$resultdata['users'] = $this->usermodel->getUserByStatus();
-		$resultdata['detail'] = $this->detailmodel->getDetailById($id);		
+		$resultdata['users'] = $this->user->getUserByStatus();
+		$resultdata['detail'] = $this->dm->getDetailById($id);		
 		if(!empty($resultdata['find']))
 		{
 			$this->load->view('admin/components/header',$this->data);
@@ -155,6 +222,8 @@ class Project extends MY_Controller{
 	public function projectdetails($id){
 		$result['dataproject'] = $this->project->getProjectById($id);
 		$result['datateam'] = $this->detail->getTeamByProjectId($id);
+		$result['datainvoice'] = $this->invoice->getInvoiceByProjectId($id);
+		$result['dataitem'] = $this->item->getItemByProjectId($id);
 		
 		// print_r($result['dataproject'][0]->name);die;
 		$this->load->view('admin/components/header',$this->data);

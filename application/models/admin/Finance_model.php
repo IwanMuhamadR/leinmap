@@ -14,6 +14,21 @@ class Finance_model extends CI_Model
 		return $arr->row();
 	}
 	
+	
+	function totalFinance(){
+		$arr1 = $this->db->select('status,SUM(nominal) as total')
+						->from('finance')
+						->where('status','income')
+						->get()->row();
+		$arr2 = $this->db->select('status,SUM(nominal) as total')
+						->from('finance')
+						->where('status','spent')
+						->get()->row();
+		$totalFinance = $arr1->total - $arr2->total;
+		
+		return $totalFinance;
+	}
+	
 	function add($arr){
 		$arrLog = array(
 			'usersid' => $this->session->userdata('usersid'),
