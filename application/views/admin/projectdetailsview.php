@@ -63,8 +63,8 @@
 				<tr>
 					<td><?=$row->quantity;?></td>
 					<td><?=$row->qtylabel;?></td>
-					<td><?=$row->price;?></td>
-					<td><?=$row->totalprice;?></td>
+					<td><?php echo "Rp. ". number_format($row->price,0,'.',',')?></td>
+					<td><?php echo "Rp. ". number_format($row->totalprice,0,'.',',')?></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
@@ -72,7 +72,7 @@
 				<table width="100%">
 					<tr class="border_bottom">
 						<td style="color:#7e97ad;">SUBTOTAL</td>
-						<td class="text-right"><?=$dataproject->price;?></td>
+						<td class="text-right"><?php echo "Rp. ". number_format($dataproject->price,0,'.',',')?></td>
 					</tr>
 					<tr class="border_bottom">
 						<td style="color:#7e97ad;">SALES TAX</td>
@@ -84,7 +84,7 @@
 					</tr>
 					<tr class="border_bottom">
 						<td style="color:#7e97ad;"><strong>TOTAL DUE BY </strong></td>
-						<td class="text-right"><?=$dataproject->price;?></td>
+						<td class="text-right"><?php echo "Rp. ". number_format($dataproject->price,0,'.',',')?></td>
 					</tr>
 				</table>
 				<br><br>
