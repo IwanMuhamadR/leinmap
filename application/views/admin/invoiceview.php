@@ -37,8 +37,8 @@
 	</div>
 	<table width="100%" style="background-color:#7e97ad; color:#fff; margin-bottom: 20px;">
 		<tr>
-			<th style="padding-top: 5px; padding-bottom: 5px;">INVOICE <?php echo $datainvoice->nomorinvoice;?></th>
-			<th align="right">DATE : <?php echo date('d-M-Y',strtotime($datainvoice->date));?></th>
+			<th style="padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">INVOICE <?php echo $datainvoice->nomorinvoice;?></th>
+			<th align="right" style="padding-right: 5px;">DATE : <?php echo date('d-M-Y',strtotime($datainvoice->date));?></th>
 		</tr>
 	</table>
 	<table  width="100%" style="margin-bottom: 20px;">
@@ -55,7 +55,7 @@
 	</table>		
 	<table width="100%" style="margin-bottom: 20px;">
 		<tr style="background-color:#7e97ad;">
-			<th style="color:#fff; padding-top: 5px; padding-bottom: 5px;">QUANTITY</th>
+			<th style="color:#fff; padding-top: 5px; padding-bottom: 5px; padding-left: 5px;">QUANTITY</th>
 			<th style="color:#fff;">DESCRIPTION</th>
 			<th style="color:#fff;">UNIT PRICE</th>
 			<th style="color:#fff;">TOTAL</th>
